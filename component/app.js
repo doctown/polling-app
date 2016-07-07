@@ -8,22 +8,15 @@ var Header = require('./segments/Header');
 var app = React.createClass({
   getInitialState() {
     return {
-      status: 'disconnected'
+      status: 'disconnected',
+      title: ''
     }
   },
-
-  render() {
-    return (
-      <div>
-          <Header title="My title" status={this.state.status}> Hello World from React</Header>
-        </div>
-    );
-  },
-
   componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
+    this.socket.on('welcome', this.welcome);
   },
 
   connect() {
@@ -32,7 +25,19 @@ var app = React.createClass({
   },
 
   disconnect() {
-    this.setState({})
+    this.setState({status: 'disconnect'});
+  },
+
+  welcome(serverState) {
+    this.setState({title: serverState.title});
+  },
+  
+  render() {
+    return (
+      <div>
+        <Header title={this.state.title} status={this.state.status}> Hello World from React</Header>
+      </div>
+    );
   }
 });
 
