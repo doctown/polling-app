@@ -19,7 +19,7 @@ io.sockets.on('connection', function(socket) {
   console.log("Connected: %s", socket.id);
 
   socket.once('disconnect', function() {
-    connections.splice(connections.indexOf(soceket), 1);
+    connections.splice(connections.indexOf(socket), 1);
     socket.disconnect();
     console.log("Disconnected: %s. %s sockets remaining.", socket.id, connections.length);
   });
