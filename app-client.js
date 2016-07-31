@@ -3,23 +3,20 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-var App = require('./component/app');
-var Router = require('react-router');
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
+import { Router, Route, Link } from 'react-router';
 
+var App = require('./component/app');
 var Audience = require('./component/Audience');
 var Board = require('./component/Board');
 var Speaker = require('./component/Speaker');
 
+// Handles routes
 var routes = (
-  <Route handler={app}>
-    <DefaultRoute handler={Audience} />
-    <Route name="speaker" path="speaker" handler={Speaker}></Route>
-    <Route name="board" path="board" handler={Board}></Route>
-  </Route>
+  <Router>
+    <Route path="/" component={App}></Route>
+    <Route path="speaker" component={Speaker}></Route>
+    <Route path="board" component={Board}></Route>
+  </Router>
 );
 
-Router.run(routes, function(Handler) {
-  ReactDOM.render(<App />, document.getElementById('react-container'));
-});
+ReactDOM.render(<Router routes={routes} />, document.getElementById('react-container'));

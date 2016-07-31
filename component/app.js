@@ -4,7 +4,9 @@
 var React = require('react');
 var io = require('socket.io-client');
 var Header = require('./segments/Header');
-
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
+var NotFoundRoute = Router.No
 var app = React.createClass({
   getInitialState() {
     return {
@@ -31,11 +33,12 @@ var app = React.createClass({
   welcome(serverState) {
     this.setState({title: serverState.title});
   },
-  
+  // Pass all properties of the state down
   render() {
     return (
       <div>
         <Header title={this.state.title} status={this.state.status}> Hello World from React</Header>
+        <RouteHandler {...this.state} />
       </div>
     );
   }
