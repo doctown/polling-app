@@ -27,5 +27,9 @@ io.sockets.on('connection', function(socket) {
   socket.emit('welcome', {
     title: title 
   });
+
+  socket.on('join', function(data) {
+    console.log("Audience Joined: %s", data.name);
+  });
 });
 
