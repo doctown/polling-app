@@ -1,4 +1,6 @@
 var React = require('react');
+var Display = require('./parts/Display');
+var Join = require('./parts/Join');
 
 class Audience extends React.Component {
   constructor(props) {
@@ -7,7 +9,14 @@ class Audience extends React.Component {
 
   render() {
     return (
-      <h1>Audience: {this.props.title} </h1>
+
+      <div>
+        <h1> Audience: </h1>
+        <Display if={this.props.status === 'connected'}>
+          <h1>Join the session</h1>
+          <Join emit={this.props.emit}></Join>
+        </Display>
+      </div>
     )
   }
 }
