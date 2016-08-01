@@ -6,7 +6,6 @@ var io = require('socket.io-client');
 var Header = require('./segments/Header');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var NotFoundRoute = Router.No
 var app = React.createClass({
   getInitialState() {
     return {
