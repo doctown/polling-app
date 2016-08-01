@@ -13,6 +13,11 @@ var app = React.createClass({
       title: ''
     }
   },
+  
+  emit(eventName, data) {
+    this.socket.emit(eventName, data);
+  },
+  
   componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
@@ -37,7 +42,7 @@ var app = React.createClass({
     return (
       <div>
         <Header title={this.state.title} status={this.state.status}> Hello World from React</Header>
-        <RouteHandler {...this.state} />
+        <RouteHandler emit={this.emit} {...this.state} />
       </div>
     );
   }
