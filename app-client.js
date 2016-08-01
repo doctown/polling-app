@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 var App = require('./component/app');
 var Audience = require('./component/Audience');
@@ -16,7 +16,8 @@ var routes = (
     <Route path="/" component={App}></Route>
     <Route path="speaker" component={Speaker}></Route>
     <Route path="board" component={Board}></Route>
+    <Route path="audience" component={Audience}></Route>
   </Router>
 );
 
-ReactDOM.render(<Router routes={routes} />, document.getElementById('react-container'));
+ReactDOM.render(<Router history={hashHistory} routes={routes} />, document.getElementById('react-container'));
